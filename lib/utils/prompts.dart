@@ -7,7 +7,6 @@ class Prompt {
 
   String showPrompt() {
     return """
-
 -------------------------------------
 ${promptType.message}
 -------------------------------------

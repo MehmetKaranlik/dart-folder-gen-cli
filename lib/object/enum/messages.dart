@@ -4,8 +4,10 @@ enum Messages {
   ),
 
   descriptionSecondary(
-    "Please give non-relative folder direction. Note that folder will be created in that path as child folders",
-  );
+    "Please give folder directory. Note that folder & directories will be created in that path as child folders",
+  ),
+
+  nullError("directory cannot be null or empty");
 
   final String message;
   const Messages(this.message);

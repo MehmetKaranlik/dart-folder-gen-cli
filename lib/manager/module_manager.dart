@@ -1,16 +1,24 @@
 import 'dart:io';
 
 import 'package:dart_folder_gen_cli/manager/file_manager.dart';
+import 'package:dart_folder_gen_cli/object/enum/messages.dart';
 import 'package:dart_folder_gen_cli/object/enum/modules.dart';
+import 'package:dart_folder_gen_cli/utils/extensions/prompts_extensions.dart';
+import 'package:dart_folder_gen_cli/utils/prompts.dart';
 
 class ModuleManager extends FileManager {
-  final String path;
+  final String? path;
   List<Modules> folders = [];
 
   ModuleManager({required this.path, required super.moduleName});
 
   Future<void> createModule() async {
-    final newDir = await createDir(path, moduleName);
+    if (path == null) {
+      Prompt(Messages.nullError).printOut();
+      return;
+    }
+
+    final newDir = await createDir(path!, moduleName);
     folders.addAll(Modules.values);
     if (folders.isNotEmpty) {
       _generateFolders(newDir);
