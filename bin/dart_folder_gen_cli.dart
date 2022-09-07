@@ -1,5 +1,11 @@
-import 'package:dart_folder_gen_cli/dart_folder_gen_cli.dart' as dart_folder_gen_cli;
+import 'index.dart';
 
-void main(List<String> arguments) {
-  print('Hello world: ${dart_folder_gen_cli.calculate()}!');
+void main(List<String> arguments) async {
+  Prompt(Messages.description).printOut();
+  final String? moduleName = stdin.readLineSync();
+
+  Prompt(Messages.descriptionSecondary).printOut();
+  final String? folderPath = stdin.readLineSync();
+
+  await ModuleManager(path: folderPath ?? '', moduleName: moduleName ?? '').createModule();
 }
